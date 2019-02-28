@@ -3,10 +3,11 @@ var Splash = function () {};
 Splash.prototype = {
 
     loadScripts: function () {
-        // Font loader
+        game.load.script('style', 'lib/style.js');
+        game.load.script('mixins', 'lib/mixins.js');
         game.load.script('WebFont', 'vendor/webfontloader.js');
-        // Other state's scripts that will be loaded
-        game.load.script('gamemenu','states/gamemenu.js');
+        game.load.script('gamemenu','/states/gamemenu.js');
+        game.load.script('game', 'states/Game.js');
         // game.load.script('thegame', 'states/thegame.js');
         // game.load.script('gameover','states/gameover.js');
         // game.load.script('credits', 'states/credits.js');
@@ -20,7 +21,7 @@ Splash.prototype = {
     },
 
     loadImages: function () {
-        game.load.image()        
+        game.load.image('menu-bg', '/assets/images/menu-bg.jpg');        
     },
 
     loadFonts: function (text) {
@@ -88,7 +89,7 @@ Splash.prototype = {
     addGameStates: function () {
 
          game.state.add("GameMenu",GameMenu);
-        // game.state.add("Game",Game);
+         game.state.add("Game",Game);
         // game.state.add("GameOver",GameOver);
         // game.state.add("Credits",Credits);
         // game.state.add("Options",Options);
@@ -101,13 +102,13 @@ Splash.prototype = {
       },
     
       create: function() {
-        
+        this.status.setText('Ready!');
         this.status.style.font = "bold 20pt Jura";
         this.addGameStates();
         this.addGameMusic();
     
         setTimeout(() => {
-            this.status.setText('Ready!');
+            game.state.start("GameMenu");
         }, 2000);
     }
 };
