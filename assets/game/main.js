@@ -6,9 +6,9 @@ Main.prototype = {
     preload: function () {
         game.load.image('stars', '/assets/images/stars.jpg');
         game.load.image('loading', '/assets/images/loading-screen.png');
-        game.load.image('logo', '/assets/images/andrew-logo.png');
-        game.load.image('utils', 'lib/utils.js');
-        game.load.script('splash', 'states/splash.js');
+        game.load.image('brand', '/assets/images/andrew-logo-proxima.png');
+        game.load.script('utils', '/assets/libs/utils.js');
+        game.load.script('splash', '/states/Splash.js');
     },
 
     // Creates the splash screen and adds as a game state

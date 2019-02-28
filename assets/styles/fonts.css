@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Jura-Font';
+    src: url('../fonts/Jura-Bold.ttf'); 
+}
+
+@font-face {
+    font-family: 'Proxima-Font';
+    src: url('//assets/fonts/proximaFont.fnt');
+}
