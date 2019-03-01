@@ -1,40 +1,67 @@
-splash.prototype = {
+var Splash = function () {};
+
+Splash.prototype = {
 
     loadScripts: function () {
-        // Font loader
-        game.load.script('Webfont', 'vendor/webfontloader.js');
-        // Other state's scripts that will be loaded
-        game.load.script('gamemenu','states/gamemenu.js');
-        game.load.script('thegame', 'states/thegame.js');
-        game.load.script('gameover','states/gameover.js');
-        game.load.script('credits', 'states/credits.js');
-        game.load.script('options', 'states/options.js');    
+        game.load.script('style', 'lib/style.js');
+        game.load.script('mixins', 'lib/mixins.js');
+        game.load.script('WebFont', 'vendor/webfontloader.js');
+        game.load.script('gamemenu','/states/gamemenu.js');
+        game.load.script('game', 'states/Game.js');
+        game.load.script('running', 'states/Running.js');
+        // game.load.script('thegame', 'states/thegame.js');
+        // game.load.script('gameover','states/gameover.js');
+        // game.load.script('credits', 'states/credits.js');
+        // game.load.script('options', 'states/options.js');    
     },
 
     
     loadBgm: function () {
         // Loads background music
-        game.load.audio('theme', '/assets/music/proximathemesong.mp3');    
+        game.load.audio('theme', '/assets/music/proximathemesong.mp3');
+        game.load.audio('game-music', '/assets/music/proxima.mp3');    
     },
 
     loadImages: function () {
-        game.load.image()        
+        game.load.image('menu-bg', '/assets/images/menu-bg.jpg');        
     },
 
-    loadFonts: function () {
-        WebFontConfig = {
-            custom: {
-              families: ['ProximaFont'],
-              urls: ['/assets/fonts/proximaFont.fnt']
-            }
-          }
+    loadFonts: function (text) {
+        // WebFont.load({
+        //     google: {
+        //       families: ['Jura'],
+        //     }
+        //   })
+        //   WebFontConfig = {
+        //     loading: function() { console.log('loading')},
+        //     active: function() { console.log('font is active'); },
+        //     // inactive: function() {},
+        //     fontloading: function(familyName, fvd) { console.log('font has loaded') },
+        //     fontactive: function(familyName, fvd) { console.log('font is active') }
+        //     // fontinactive: function(familyName, fvd) {}
+        //   };
+        // WebFontConfig = {
+        //     google: {
+        //         families: ['Jura']
+        //     },
+        //     loading: function() { console.log('loading')},
+        //     active: function() { console.log('font is active'); },
+        //     // inactive: function() {},
+        //     fontloading: function(familyName, fvd) { console.log('font has loaded') },
+        //     fontactive: function(familyName, fvd) { console.log('font is active') }
+        // }
+          
     },
 
     init: function () {
-        this.loadingBar = game.make.sprite(game.world.centerX-(387/2), 400, "loading");
-        this.logo       = game.make.sprite(game.world.centerX, 200, 'brand');
-        this.status     = game.make.text(game.world.centerX, 380, 'Loading...', {fill: 'white'});
-        utils.centerGameObjects([this.logo, this.status]);
+               
+           //console.log('font is active');
+           this.loadingBar = game.make.sprite(game.world.centerX-(387/2), 400, "loading");
+           this.logo       = game.make.sprite(game.world.centerX, 200, 'brand');
+           this.status     = game.make.text(game.world.centerX, 380, 'Loading...', {fill: 'white', font: "bold 20pt Jura"});
+           utils.centerGameObjects([this.logo, this.status]);
+        
+        
     },
 
     // The preload function then will call all of the previously defined functions:
@@ -44,7 +71,7 @@ splash.prototype = {
         
         // my logo
         // scales the logo down to half size, should probably resize in PS later...
-        game.add.existing(this.logo).scale.setTo(0.5);
+        game.add.existing(this.logo).scale.setTo(0.25);
         
         // loading bar
         game.add.existing(this.loadingBar);
@@ -63,11 +90,12 @@ splash.prototype = {
 
     addGameStates: function () {
 
-        game.state.add("GameMenu",GameMenu);
-        game.state.add("Game",Game);
-        game.state.add("GameOver",GameOver);
-        game.state.add("Credits",Credits);
-        game.state.add("Options",Options);
+         game.state.add("GameMenu",GameMenu);
+         game.state.add("Game",Game);
+         game.state.add("Running",Running);
+        // game.state.add("GameOver",GameOver);
+        // game.state.add("Credits",Credits);
+        // game.state.add("Options",Options);
       },
     
       addGameMusic: function () {
@@ -78,11 +106,12 @@ splash.prototype = {
     
       create: function() {
         this.status.setText('Ready!');
+        this.status.style.font = "bold 20pt Jura";
         this.addGameStates();
         this.addGameMusic();
     
-        setTimeout(function () {
-          //game.state.start("GameMenu");
-        }, 5000);
+        setTimeout(() => {
+            game.state.start("GameMenu");
+        }, 2000);
     }
 };

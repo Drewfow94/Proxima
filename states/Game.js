@@ -19,11 +19,13 @@ Game.prototype = {
     var onOver = function (target) {
       target.fill = "#FEFFD5";
       target.stroke = "rgba(200,200,200,0.5)";
+      target.setShadow(-5, 5, 'rgba(200,200,200,0.5)', 0);
       txt.useHandCursor = true;
     };
     var onOut = function (target) {
       target.fill = "white";
       target.stroke = "rgba(0,0,0,0)";
+      target.setShadow(null);
       txt.useHandCursor = false;
     };
     //txt.useHandCursor = true;
@@ -40,8 +42,11 @@ Game.prototype = {
   create: function () {
     this.stage.disableVisibilityChange = false;
     game.add.sprite(0, 0, 'stars');
-    this.addMenuOption('Next ->', function (e) {
-      this.game.state.start("GameOver");
+    
+    this.addMenuOption('Level 01',  function () {
+      
+      
+      this.game.state.start("Running");
     });
   }
 };

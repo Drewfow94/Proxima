@@ -1,11 +1,18 @@
 // Creates a game object to start the preloader and the game itself
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game'), 
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { update: update }), 
 Main = function () {},
 gameOptions = {
     playSound: true,
     playMusic: true
 },
 musicPlayer;
+
+var counter = 0;
+
+function update(){
+    counter++;
+    console.log(counter)
+}
 
 Main.prototype = {
     // The preloader screen

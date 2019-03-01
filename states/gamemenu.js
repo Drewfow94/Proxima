@@ -39,9 +39,9 @@ GameMenu.prototype = {
         console.dir(this);
 
         // Adds each nav item. For now, I'll just focus on the main menu.
-        this.addMenuOption('Start', {x: 300, y: 200}, function () {
-            //this.text(game.world.centerX, 100);
-            console.log('hello');
+        this.addMenuOption('Start', {x: 355, y: 250}, function () {
+            // this.txt.setShadow(-5, 5, 'rgba(200,200,200,0.5)', 0);
+            
             game.state.start("Game");
         });
     },
