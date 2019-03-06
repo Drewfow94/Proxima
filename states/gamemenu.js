@@ -36,7 +36,7 @@ GameMenu.prototype = {
         game.add.sprite(0, 0, 'menu-bg');
         game.add.existing(this.titleText);
 
-        console.dir(this);
+        
 
         // Adds each nav item. For now, I'll just focus on the main menu.
         this.addMenuOption('Start', {x: 355, y: 250}, function () {
